@@ -13,7 +13,7 @@ def MPC(self_state, goal_state):
     # omega_max = 0.523
     omega_max = 5.0
     Q = np.array([[2.0, 0.0, 0.0],[0.0, 2.0, 0.0],[0.0, 0.0, 0.1]])
-    R = np.array([[0.5, 0.0], [0.0, 0.4]])
+    R = np.array([[0.3, 0.0], [0.0, 0.5]])
     goal = goal_state[:,:3]
     opt_x0 = opti.parameter(3) #vector3-parameter
     opt_controls = opti.variable(N, 2) #matrix10*2-variable

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
     <arg name="gazebo_gui" default="false" />
-    <arg name="use_teleop_key" default="true" />
+    <arg name="use_teleop_key" default="false" />
     <arg name="use_lmpc" default="false"/>
 
     <!--启动gazebo-->

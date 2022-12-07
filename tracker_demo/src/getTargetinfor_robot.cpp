@@ -163,12 +163,13 @@ int main( int argc, char * argv[] )
 
     // traj_pub_lmpc = node.advertise<mpc::Polynome>("trajectory",3);
     traj_pub_nmpc = node.advertise<std_msgs::Float32MultiArray>("/mpc/traj_point", 3);
+
     // this is for hunter SE
-    ros::Subscriber odom_sub1 = node.subscribe("/robot1/ackermann_steering_controller/odom", 50, odom1Callbck);   // robot1里程接收
-    ros::Subscriber odom_sub2 = node.subscribe("/scout2/odom", 50, odom2Callbck);   // robot2里程接收
+    // ros::Subscriber odom_sub1 = node.subscribe("/robot1/ackermann_steering_controller/odom", 50, odom1Callbck);   // robot1里程接收
+    // ros::Subscriber odom_sub2 = node.subscribe("/scout2/odom", 50, odom2Callbck);   // robot2里程接收
     // this is for scout
-    // ros::Subscriber odom_sub1 = node.subscribe("/scout1/odom", 50, odom1Callbck);
-    // ros::Subscriber odom_sub2 = node.subscribe("/robot2/ackermann_steering_controller/odom", 50, odom2Callbck);    
+    ros::Subscriber odom_sub1 = node.subscribe("/scout1/odom", 50, odom1Callbck);
+    ros::Subscriber odom_sub2 = node.subscribe("/robot2/ackermann_steering_controller/odom", 50, odom2Callbck);    
     ros::Timer state_timer = node.createTimer(ros::Duration(0.05), stateCallback);
     ros::spin();
     return 0;
