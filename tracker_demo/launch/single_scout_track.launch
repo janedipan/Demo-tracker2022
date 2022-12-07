@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="gazebo_gui" default="false" />
+    <arg name="use_teleop_key" default="false" />
+    <arg name="use_lmpc" default="false"/>
+
+    <!--启动gazebo-->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="gui" value="$(arg gazebo_gui)"/>
+        <arg name="use_sim_time" value="true"/>
+    </include>
+
+    <node name="rvizvisualisation" pkg="rviz" type="rviz" output="log" args="-d $(find tracker_demo)/config/singleRobot.rviz" />
+
+    <!--键盘控制robot2-->>
+    <group if="$(arg use_teleop_key)">
+        <node name="teleop_cmd_vel" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" launch-prefix="gnome-terminal --title=teleop_twist_keyboard -x" >
+            <remap from="/cmd_vel" to="/robot2/cmd_vel"/>
+        </node>
+    </group>
+
+    <!--导入机器人模型，且发布odom-->
+    <include file="$(find scout_gazebo_sim)/launch/spawn_one_scout.launch" />
+
+    <!--处理odom信息，发布数据至mpc，，启动前需要检查robot_type-->
+    <node name="target_infor_pub" pkg="tracker_demo" type="getTargetinfor_point" output="screen" />
+
+    <!--启动mpc，启动前需要检查import MPC,robot_type-->
+    <group unless="$(arg use_lmpc)">
+        <node name="nmpc" pkg="mpc" type="local_planner.py" launch-prefix="gnome-terminal --title=nmpc_python -x" />
+    </group>
+</launch>
+

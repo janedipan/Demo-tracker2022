@@ -1,0 +1,31 @@
+<launch>
+    <!-- initial pose -->
+    <arg name="x1" default="0.0"/>
+    <arg name="y1" default="0.0"/>
+    <arg name="z1" default="0.25"/>
+    <arg name="Y1" default="-0.261"/>
+
+    <arg name="robot_namespace1" default="/robot1" />
+
+    <group ns="$(arg robot_namespace1)">
+        <include file="$(find hunter2_control)/launch/hunter2_v_contol.launch" >
+            <arg name="robot_namespace" value="$(arg robot_namespace1)" />
+        </include>
+
+        <param name="robot_description" command="$(find xacro)/xacro '$(find hunter2_base)/urdf/hunter2_base_gazebo.xacro'" />
+
+        <node name="hunter_spawn" pkg="gazebo_ros" type="spawn_model" output="screen" respawn="false" args="
+                -urdf 
+                -param robot_description
+                -model 'hunter_$(arg robot_namespace1)' 
+                -x $(arg x1)
+                -y $(arg y1)
+                -z $(arg z1)
+                -R 0.0 
+                -P 0.0 
+                -Y $(arg Y1)"/>
+    </group>
+
+    <node name="odomToworld" pkg="tf" type="static_transform_publisher" args="0.0 0.0 0.0 0.0 0.0 0.0 world odom1 0.010" />    
+
+</launch>

@@ -18,5 +18,5 @@
     <!--add this node to publish the odometry of scout-->
     <node name="scout_pub_odom" pkg="scout_gazebo_sim" type="scout_pub_odom.py" output="screen" />
         
-    <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find scout_description)/rviz/navigation.rviz" /> -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find tracker_demo)/config/singleRobot.rviz" />
 </launch>
