@@ -70,7 +70,7 @@ int main(int argc, char* argv[]){
         ros::Subscriber odom_sub1 = nh.subscribe("/robot1/ackermann_steering_controller/odom", 50, odom1Callbck);
     }
     else if(robot_type=="scout"){
-        ros::Subscriber odom_sub1 = nh.subscribe("/scout/odom", 50, odom1Callbck);
+        ros::Subscriber odom_sub1 = nh.subscribe("/scout1/odom", 50, odom1Callbck);
     }
     else ROS_ERROR("there is no odometry input!!");
     ros::Subscriber get_goal = nh.subscribe("/move_base_simple/goal", 10, goalCallbck);    

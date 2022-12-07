@@ -15,7 +15,7 @@ import rospy
 class vehicle_pose_and_velocity_updater:
 	def __init__(self):
 		rospy.init_node('scout_odom_tf', log_level=rospy.DEBUG)
-		self.odom_pub = rospy.Publisher('/scout1/odom', Odometry, queue_size = 1)
+		self.odom_pub = rospy.Publisher('/scout2/odom', Odometry, queue_size = 1)
 		rospy.Subscriber('/gazebo/model_states', ModelStates, self.model_cb, queue_size = 1)
 		self.timer = rospy.Timer(rospy.Duration(0.01), self.pubModelstate)
 		self.odom_ = Odometry()
@@ -24,7 +24,7 @@ class vehicle_pose_and_velocity_updater:
 	def model_cb(self,data):
 		try:
 			# vehicle_model_index = data.name.index("scout/")
-			vehicle_model_index = data.name.index("scout_/robot1") # you may need to modify the name index accorinding to robotname in gazebo
+			vehicle_model_index = data.name.index("scout_/robot2") # you may need to modify the name index accorinding to robotname in gazebo
 		except:
 			return
 		vehicle_position = data.pose[vehicle_model_index]
@@ -34,7 +34,7 @@ class vehicle_pose_and_velocity_updater:
 		time_stamp = rospy.Time.now()
 
 		# vehicle Odometry msgs
-		self.odom_.header.frame_id = 'odom1'
+		self.odom_.header.frame_id = 'odom2'
 		self.odom_.header.stamp = time_stamp
 		self.odom_.pose.pose.position = vehicle_position.position
 		self.odom_.pose.pose.orientation = vehicle_position.orientation
@@ -48,8 +48,8 @@ class vehicle_pose_and_velocity_updater:
 		br.sendTransform((self.odom_.pose.pose.position.x, self.odom_.pose.pose.position.y, self.odom_.pose.pose.position.z),
 						(self.odom_.pose.pose.orientation.x, self.odom_.pose.pose.orientation.y, self.odom_.pose.pose.orientation.z, self.odom_.pose.pose.orientation.w),
 						rospy.Time.now(),
-						'robot1/base_link',
-						"odom1") # you may need to modify the id
+						'robot2/base_link',
+						"odom2") # you may need to modify the id
 
 
 if __name__ == "__main__":

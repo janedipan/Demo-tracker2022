@@ -5,15 +5,16 @@ from geometry_msgs.msg import Pose, PoseArray, PoseStamped, Point, Twist
 from nav_msgs.msg import Path, Odometry, OccupancyGrid
 import numpy as np
 import tf
-# from MPC_Ackerman import MPC
-from MPC_Differential import MPC
+
+from MPC_Ackerman import MPC
+# from MPC_Differential import MPC
 
 from sensor_msgs.msg import LaserScan
 from visualization_msgs.msg import Marker,MarkerArray
 from std_srvs.srv import SetBool
 import math
 
-robot_type = "scout" # hunter || scout
+robot_type = "hunter" # hunter || scout
 
 class Local_Planner():
     def __init__(self):
@@ -34,7 +35,8 @@ class Local_Planner():
             self._sub_odom = rospy.Subscriber('/robot1/ackermann_steering_controller/odom', Odometry, self.__odom_cb) #receive hunter SE's odometry, convert to curr_state(matix1*5):[x,y,\psi,0,0]                      
         elif robot_type == "scout":
             self.__pub_rtc_cmd = rospy.Publisher('/robot1/cmd_vel', Twist, queue_size=10)                                     
-            self._sub_odom = rospy.Subscriber('/scout/odom1', Odometry, self.__odom_cb)                                   
+            self._sub_odom = rospy.Subscriber('/scout1/odom', Odometry, self.__odom_cb)
+                                               
         self._sub_traj_waypts = rospy.Subscriber('/mpc/traj_point', Float32MultiArray, self._vomp_path_callback) 
         
         self.control_cmd = Twist()      
