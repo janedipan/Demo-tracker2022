@@ -3,7 +3,7 @@
     <!-- 是否打开 rqt_robot_steering 控制指令 可视化 -->
     <arg name="cmd_rqt_vis" default="false"/>
 
-    <arg name="robot_namespace" default="/robot2"/>
+    <arg name="robot_namespace" default="/robot1"/>
 
     <!-- Load controller parameters -->
     <rosparam command="load" file="$(find hunter2_control)/config/ctrl_ackermann_steering_controller.yaml" />

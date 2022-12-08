@@ -6,15 +6,15 @@ from nav_msgs.msg import Path, Odometry, OccupancyGrid
 import numpy as np
 import tf
 
-# from MPC_Ackerman import MPC
-from MPC_Differential import MPC
+from MPC_Ackerman import MPC
+# from MPC_Differential import MPC
 
 from sensor_msgs.msg import LaserScan
 from visualization_msgs.msg import Marker,MarkerArray
 from std_srvs.srv import SetBool
 import math
 
-robot_type = "scout" # hunter || scout
+robot_type = "hunter" # hunter || scout
 
 class Local_Planner():
     def __init__(self):
