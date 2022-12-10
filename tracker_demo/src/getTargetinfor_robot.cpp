@@ -10,7 +10,7 @@
 
 #define delta_t 0.05
 #define traj_size 10
-#define hold_dist 1.0
+#define hold_dist 2.0
 
 #define max_traj_point 10
 #define min_traj_point 5
@@ -99,10 +99,12 @@ void stateCallback(const ros::TimerEvent& e)
     if(dist > hold_dist)
     {
         tracker_state = FOLLOW;
+        
     }
     else
     {
         tracker_state = STOP;
+        ROS_WARN("waiting!!!");
     }
 
     // mpc::Polynome poly;
@@ -131,7 +133,7 @@ void stateCallback(const ros::TimerEvent& e)
             robot_pos = odom2vector(robot_odom);
 
             // 根据目标点位置画圆，半径是hold_dist，取目标点、机器人位置连线与圆的交点作为目标点
-            fix_target = robot_pos + (target_pos - robot_pos) / dist * (dist - hold_dist);
+            fix_target = robot_pos + (target_pos - robot_pos) / dist * (dist - hold_dist-0.1);
 
             // std::cout << "target_pos:= " << target_pos.transpose() << std::endl;
             // std::cout << "robot_pos:= " << robot_pos.transpose() << std::endl;
@@ -164,7 +166,7 @@ int main( int argc, char * argv[] )
     // traj_pub_lmpc = node.advertise<mpc::Polynome>("trajectory",3);
     traj_pub_nmpc = node.advertise<std_msgs::Float32MultiArray>("/mpc/traj_point", 3);
     // this is for hunter SE
-    ros::Subscriber odom_sub1 = node.subscribe("/robot1/ackermann_steering_controller/odom", 50, odom1Callbck);   // robot1里程接收
+    ros::Subscriber odom_sub1 = node.subscribe("/hunter1/odom", 50, odom1Callbck);   // robot1里程接收
     ros::Subscriber odom_sub2 = node.subscribe("/scout2/odom", 50, odom2Callbck);   // robot2里程接收
     // this is for scout
     // ros::Subscriber odom_sub1 = node.subscribe("/scout1/odom", 50, odom1Callbck);

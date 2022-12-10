@@ -48,3 +48,7 @@ pip install casadi
 `roslaunch tracker_demo scout_track_hunter.launch`
 
 注意:启动前需要对相关配置文件进行修改,[here](tracker_demo/README.md)
+
+## 修改记录
+2022-12-10
+- 解决&更换hunter gazebo发布odom异常问题

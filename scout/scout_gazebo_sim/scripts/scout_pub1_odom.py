@@ -14,8 +14,8 @@ import rospy
 
 class vehicle_pose_and_velocity_updater:
 	def __init__(self):
-		rospy.init_node('scout_odom_tf', log_level=rospy.DEBUG)
-		self.odom_pub = rospy.Publisher('/scout1/odom', Odometry, queue_size = 1)
+		rospy.init_node('hunter_odom_tf', log_level=rospy.DEBUG)
+		self.odom_pub = rospy.Publisher('/hunter1/odom', Odometry, queue_size = 1) # /hunter1/odom || /scout1/odom
 		rospy.Subscriber('/gazebo/model_states', ModelStates, self.model_cb, queue_size = 1)
 		self.timer = rospy.Timer(rospy.Duration(0.01), self.pubModelstate)
 		self.odom_ = Odometry()
@@ -24,7 +24,7 @@ class vehicle_pose_and_velocity_updater:
 	def model_cb(self,data):
 		try:
 			# vehicle_model_index = data.name.index("scout/")
-			vehicle_model_index = data.name.index("scout_/robot1") # you may need to modify the name index accorinding to robotname in gazebo
+			vehicle_model_index = data.name.index("hunter_/robot1") # you may need to modify the name index accorinding to robotname in gazebo--- hunter_/robot1||scout_/robot1
 		except:
 			return
 		vehicle_position = data.pose[vehicle_model_index]

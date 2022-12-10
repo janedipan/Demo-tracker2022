@@ -4,7 +4,7 @@ ackermann_steering_controller:
 
     # Odometry related 
     # 发布Hunter机器人的里程频率
-    publish_rate: 100                   # default: 1.0
+    publish_rate: 50                   # default: 1.0
     open_loop: false
 
     # Joints
@@ -28,7 +28,7 @@ ackermann_steering_controller:
     base_frame_id: 'robot1/base_link'
 
     # Transform from odom -> base_link
-    enable_odom_tf: true
+    enable_odom_tf: false
     odom_frame_id: '/odom1'
 
     # Set to false if the motor driver provides velocity data. 

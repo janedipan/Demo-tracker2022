@@ -30,6 +30,9 @@
                 -R 0.0 
                 -P 0.0 
                 -Y $(arg Y1)"/>
+
+        <!--publish odometry: odom1->robot1/base_link-->
+        <node name="robot1_pub_odom" pkg="scout_gazebo_sim" type="scout_pub1_odom.py" output="screen" /> 
     </group>
 
     <group ns="$(arg robot_namespace2)">

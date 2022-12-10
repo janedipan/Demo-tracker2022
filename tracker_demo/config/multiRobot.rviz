@@ -6,7 +6,6 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /Odometry1
         - /Odometry1/Shape1
       Splitter Ratio: 0.5
     Tree Height: 549
@@ -115,7 +114,7 @@ Visualization Manager:
         Shaft Length: 0.5
         Shaft Radius: 0.05000000074505806
         Value: Arrow
-      Topic: /robot1/ackermann_steering_controller/odom
+      Topic: /hunter1/odom
       Unreliable: false
       Value: true
     - Class: rviz/Axes
@@ -153,25 +152,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 17.135971069335938
+      Distance: 13.234197616577148
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -1.2970603704452515
-        Y: -0.2920829653739929
-        Z: -1.1466026306152344
+        X: 3.4996652603149414
+        Y: -0.5679089426994324
+        Z: -1.141803503036499
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.6253979206085205
+      Pitch: 1.5697963237762451
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 6.033588886260986
+      Yaw: 3.1085896492004395
     Saved: ~
 Window Geometry:
   Displays:

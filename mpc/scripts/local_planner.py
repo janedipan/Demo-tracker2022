@@ -32,7 +32,7 @@ class Local_Planner():
         self.__pub_local_path = rospy.Publisher('mpc/local_path', Path, queue_size=10)                              
         if robot_type == "hunter":
             self.__pub_rtc_cmd = rospy.Publisher('/robot1/ackermann_steering_controller/cmd_vel', Twist, queue_size=10)                                     
-            self._sub_odom = rospy.Subscriber('/robot1/ackermann_steering_controller/odom', Odometry, self.__odom_cb) #receive hunter SE's odometry, convert to curr_state(matix1*5):[x,y,\psi,0,0]                      
+            self._sub_odom = rospy.Subscriber('/hunter1/odom', Odometry, self.__odom_cb) #receive hunter SE's odometry, convert to curr_state(matix1*5):[x,y,\psi,0,0]                      
         elif robot_type == "scout":
             self.__pub_rtc_cmd = rospy.Publisher('/robot1/cmd_vel', Twist, queue_size=10)                                     
             self._sub_odom = rospy.Subscriber('/scout1/odom', Odometry, self.__odom_cb)
