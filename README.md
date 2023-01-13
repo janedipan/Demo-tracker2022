@@ -49,6 +49,9 @@ pip install casadi
 
 注意:启动前需要对相关配置文件进行修改,[here](tracker_demo/README.md)
 
+## 效果展示
+<image src="images/figure0.png" width="600" />
+
 ## 修改记录
 2022-12-10
 - 解决&更换hunter gazebo发布odom异常问题
